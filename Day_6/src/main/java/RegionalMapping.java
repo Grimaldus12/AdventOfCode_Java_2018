@@ -8,6 +8,19 @@ import java.util.Map;
 
 class RegionalMapping {
 
+    /*
+        Method to compute the regions:
+        Fill a grid, the max x and y values are equivalent to the biggest values appearing
+        in the points input (For the array obviously "+1").
+        Then we compute our regions by mapping the the nearest input-Point for each
+        point in the grid. In the regions map we got all of our input-points mapped with
+        the amount of grid-points being closest.
+        To eliminate the indefinite regions we just delete all of those, containing
+        a boundary point
+     */
+
+
+
     private Map<Integer, Point> initPoints(String file) throws IOException {
         List<String> input = Files.readAllLines(new File(file).toPath());
         Map<Integer, Point> points = new HashMap<>();
@@ -36,7 +49,7 @@ class RegionalMapping {
         Map<Integer, Integer> region = new HashMap<>();
 
         //init the grid and Mapping for regions
-        int[][] grid = new int[maxCoords[0]][maxCoords[1]];
+        int[][] grid = new int[maxCoords[0]+1][maxCoords[1]+1];
         int y = maxCoords[0];
         int x = maxCoords[1];
         for (int i = 0; i < grid.length; i++) {
